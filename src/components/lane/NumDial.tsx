@@ -116,10 +116,10 @@ function NumDial({ maxNum, dialNum, setDialNum }: NumDialProps) {
             "0"
         );
 
-    // const normalize = useCallback((n: number) => {
-    //     const mod = n % maxNum;
-    //     return (mod + maxNum) % maxNum;
-    // }, [maxNum]);
+    const normalize = useCallback((n: number) => {
+        const mod = n % maxNum;
+        return (mod + maxNum) % maxNum;
+    }, [maxNum]);
 
     const handleTouchChange = (newNum: number) => {
         setDialNum(normalize(newNum));
@@ -136,8 +136,7 @@ function NumDial({ maxNum, dialNum, setDialNum }: NumDialProps) {
             <div className="text-2xl font-bold text-gray-300"
                 onClick={() => handleTouchChange((dialNum - 1 + maxNum) % maxNum)}
             >
-                {/* {formatTime((dialNum - 1 + maxNum) % maxNum)} */}
-                {formatTime(dialNum)}
+                {formatTime((dialNum - 1 + maxNum) % maxNum)}
             </div>
             <input
                 className={`text-3xl font-bold text-center`}
