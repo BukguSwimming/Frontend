@@ -125,8 +125,8 @@ export default function DirectorBoard({ data, searchTerm = "", onRefresh }: Prop
     const totalSeconds = Math.floor(ms / 1000);
     const minutes = Math.floor(totalSeconds / 60);
     const seconds = totalSeconds % 60;
-    const milliseconds = ms % 1000;
-    return `${minutes}:${String(seconds).padStart(2, "0")}.${String(milliseconds).padStart(3, "0")}`;
+    const milliseconds = Math.floor((ms % 1000) / 10);
+    return `${minutes}:${String(seconds).padStart(2, "0")}.${String(milliseconds).padStart(2, "0")}`;
   };
 
   const handleEditClick = (player: PlayerListType) => {
@@ -134,7 +134,7 @@ export default function DirectorBoard({ data, searchTerm = "", onRefresh }: Prop
     const ms = player.record || 0;
     setEditMin(Math.floor(ms / 60000));
     setEditSec(Math.floor((ms % 60000) / 1000));
-    setEditMs(ms % 1000);
+    setEditMs(Math.floor((ms % 1000) / 10));
     setEditDQ(player.dq || "");
   };
 
@@ -147,7 +147,7 @@ export default function DirectorBoard({ data, searchTerm = "", onRefresh }: Prop
   };
 
   const handleEditSave = async (swimming_id: number, id: number) => {
-    const totalMs = editMin * 60000 + editSec * 1000 + editMs;
+    const totalMs = (editMin * 6000 + editSec * 100 + editMs) * 10;
     const ok = await updatePlayRecord(swimming_id, id, totalMs, editDQ);
     if (ok === true) {
       const response = await reloadPlayStatus(swimming_id);
@@ -315,9 +315,9 @@ export default function DirectorBoard({ data, searchTerm = "", onRefresh }: Prop
                           <input
                             type="number"
                             min={0}
-                            max={999}
+                            max={99}
                             value={editMs}
-                            onChange={(e) => setEditMs(Math.min(999, Math.max(0, parseInt(e.target.value) || 0)))}
+                            onChange={(e) => setEditMs(Math.min(99, Math.max(0, parseInt(e.target.value) || 0)))}
                             className="border px-1 w-16 text-right"
                           />
                         </div>

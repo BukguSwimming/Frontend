@@ -15,14 +15,14 @@ function Timer({ time, setTime }: TimerProps) {
         if (!isInternalChange.current) {
             setMinutes(Math.floor(time / 60000));
             setSeconds(Math.floor((time % 60000) / 1000));
-            setMilliseconds(time % 1000);
+            setMilliseconds(Math.floor((time % 1000) / 10));
         }
         isInternalChange.current = false;
     }, [time]);
 
 
     useEffect(() => {
-        const newTime = (minutes * 60 * 1000) + (seconds * 1000) + milliseconds;
+        const newTime = ((minutes * 60 * 100) + (seconds * 100) + milliseconds) * 10;
         if (newTime !== time) {
             isInternalChange.current = true;
             setTime(newTime);
@@ -36,7 +36,7 @@ function Timer({ time, setTime }: TimerProps) {
             <div className="text-3xl font-bold">&apos;</div>
             <NumDial maxNum={60} dialNum={seconds} setDialNum={setSeconds} />
             <div className="text-3xl font-bold">.</div>
-            <NumDial maxNum={1000} dialNum={milliseconds} setDialNum={setMilliseconds} />
+            <NumDial maxNum={100} dialNum={milliseconds} setDialNum={setMilliseconds} />
         </div>
     );
 };

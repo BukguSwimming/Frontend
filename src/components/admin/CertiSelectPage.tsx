@@ -74,8 +74,8 @@ export default function CertiSelectPage({ searchTerm = "" }: Props) {
     const totalSeconds = Math.floor(ms / 1000);
     const minutes = Math.floor(totalSeconds / 60);
     const seconds = totalSeconds % 60;
-    const milliseconds = ms % 1000;
-    return `${minutes}:${String(seconds).padStart(2, '0')}.${String(milliseconds).padStart(3, '0')}`;
+    const milliseconds = Math.floor((ms % 1000) / 10);
+    return `${minutes}:${String(seconds).padStart(2, '0')}.${String(milliseconds).padStart(2, '0')}`;
   };
 
   // 필터링 시 인덱스가 바뀌므로, 개별 play 기준으로 상태 계산하는 보조 함수
@@ -102,7 +102,7 @@ export default function CertiSelectPage({ searchTerm = "" }: Props) {
     const ms = player.record || 0;
     setEditMin(Math.floor(ms / 60000));
     setEditSec(Math.floor((ms % 60000) / 1000));
-    setEditMs(ms % 1000);
+    setEditMs(Math.floor((ms % 1000) / 10));
     setEditDQ(player.dq || "");
   };
 
@@ -117,7 +117,7 @@ export default function CertiSelectPage({ searchTerm = "" }: Props) {
   const handleEditSave = async (swimming_id: number, id: number) => {
     if (!selectedPlay) return;
     // 입력값 보정
-    const totalMs = editMin * 60000 + editSec * 1000 + editMs;
+    const totalMs = (editMin * 6000 + editSec * 100 + editMs) * 10;
 
     const updateRes = await updatePlayRecord(swimming_id, id, totalMs, editDQ);
     if (updateRes === true) {
@@ -242,9 +242,9 @@ export default function CertiSelectPage({ searchTerm = "" }: Props) {
                             <input
                               type="number"
                               min={0}
-                              max={999}
+                              max={99}
                               value={editMs}
-                              onChange={e => setEditMs(Math.min(999, Math.max(0, parseInt(e.target.value) || 0)))}
+                              onChange={e => setEditMs(Math.min(99, Math.max(0, parseInt(e.target.value) || 0)))}
                               className="border px-1 w-16 text-right"
                             />
                           </div>

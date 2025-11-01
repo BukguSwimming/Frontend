@@ -41,7 +41,7 @@ export const SubmitDialog = ({ time, foul, id }: SubmitDialogProps) => {
               {time > 60000 && `${Math.floor(time / 60000)}분`}
               &nbsp;
               {time > 1000 && `${Math.floor((time % 60000) / 1000)}.`}
-              {time % 1000}초
+              {`${String(Math.floor((time % 1000) / 10)).padStart(2, '0')}`}초
             </div>
           </div>
           <hr />

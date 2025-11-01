@@ -1,5 +1,6 @@
 import { getLaneDetail } from "@/api/judge/server";
 import LaneClientComponent from "@/components/lane/LaneClientComponent";
+import RefreshOnChange from "@/components/lane/RefreshOnChange";
 import { SidePanel } from "@/components/sidepanel/sidepanel";
 import { LaneDetailType } from "@/types/lanes";
 import Link from "next/link";
@@ -10,6 +11,7 @@ export default async function LanePage({ params }: { params: Promise<{ id: strin
 
     return (response ? (
         <div className="px-3 flex flex-col py-10 w-full items-center gap-8">
+            <RefreshOnChange id={id} initial={response} intervalMs={5000}/>
             <div className="w-full max-w-2xl flex justify-between">
                 <Link href="/judge">
                     <button className="px-3 py-1 rounded hover:bg-gray-300">

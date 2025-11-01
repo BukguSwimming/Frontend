@@ -78,8 +78,8 @@ export default function PrintCertificate() {
                   const ms = data?.swimming_data?.record ?? 0;
                   const min = Math.floor(ms / 60000);
                   const sec = Math.floor((ms % 60000) / 1000) % 60;
-                  const msRemain = ms % 1000;
-                  return `${min}'${String(sec).padStart(2, '0')}"${String(msRemain).padStart(3, '0')}`;
+                  const msRemain = Math.floor((ms % 1000) / 10);
+                  return `${min}'${String(sec).padStart(2, '0')}"${String(msRemain).padStart(2, '0')}`;
                 })()}
               </p>
             </div>
