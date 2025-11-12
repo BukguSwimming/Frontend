@@ -9,6 +9,7 @@ export const getLaneDetail = async (playdata_id: string) => {
         Authorization: `Bearer ${(await cookies()).get("accessToken")?.value}`
       },
     });
+    console.log(response.data);
     return response.data as LaneDetailType;
   }
   catch (error) {

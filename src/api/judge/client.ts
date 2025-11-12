@@ -1,4 +1,5 @@
 import { apiClient } from "@/api/apiClients";
+import { LaneDetailType } from "@/types/lanes";
 
 export const getLanes = async (lane_num: number) => {
   try {
@@ -33,5 +34,16 @@ export const getNowPlay = async (lane: number) => {
     return response.data as {code: number; id: number; play_num: number};
   } catch (error) {
     console.error("Error fetching now play:", error);
+  }
+}
+
+export const getLaneDetail = async (playdata_id: string) => {
+  try {
+    const response = await apiClient.get(`/judge/req?playdata_id=${playdata_id}`);
+    return response.data as LaneDetailType;
+  }
+  catch (error) {
+    console.error("Error fetching lane detail:", error);
+    throw error;
   }
 }
