@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -56,12 +57,11 @@
     --chart-5: 340 75% 55%
   }
 }
-@import url('https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&display=swap');
 @font-face {
-    font-family: 'ChosunGs';
-    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@1.0/ChosunGs.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
+  font-family: 'ChosunGs';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@1.0/ChosunGs.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
 }
 
 .font-chosungs {
