@@ -1,6 +1,6 @@
 'use client';
 
-import { getLanes, getNowPlay } from "@/api/judge/client";
+import { getLanes, getNowPlay } from "@/api/v1/judge/client";
 import { SidePanel } from "@/components/sidepanel/sidepanel";
 import { LaneListType } from "@/types/lanes";
 import { parseJwt } from "@/utils/parseJwt";

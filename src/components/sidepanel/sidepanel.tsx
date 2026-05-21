@@ -7,7 +7,7 @@ import { Menu } from "lucide-react";
 import { useEffect, useState } from "react";
 import { parseJwt } from "@/utils/parseJwt";
 import { useRouter } from "next/navigation";
-import { logout } from "@/api/auth";
+import { logout } from "@/api/v1/auth";
 
 type SidePanelProps = {
   onSearch?: (text: string) => void;

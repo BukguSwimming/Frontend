@@ -2,7 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { Button } from '@/components/ui/button';
-import { logout } from "@/api/auth";
+import { logout } from "@/api/v1/auth";
 import { Trophy } from "lucide-react";
 
 export default function RightSideBar() {

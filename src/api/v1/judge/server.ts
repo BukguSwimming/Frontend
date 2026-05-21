@@ -1,6 +1,6 @@
 import { LaneDetailType } from "@/types/lanes";
 import { cookies } from "next/headers";
-import { serverApiClient } from '@/api/apiClients';
+import { serverApiClient } from '@/api/v1/apiClients';
 
 export const getLaneDetail = async (playdata_id: string) => {
   try {

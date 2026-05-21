@@ -1,8 +1,8 @@
 "use client"
 
 import { useEffect, useMemo, useRef, useState } from "react";
-import { getPlayStatus } from "@/api/director/client";
-import { reloadPlayStatus, updatePlayRecord } from "@/api/admin/client";
+import { getPlayStatus } from "@/api/v1/director/client";
+import { reloadPlayStatus, updatePlayRecord } from "@/api/v1/admin/client";
 import { PlayerListType } from "@/types/lanes";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";

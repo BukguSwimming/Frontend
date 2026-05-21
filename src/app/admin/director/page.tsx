@@ -5,7 +5,7 @@ import RightSideBar from "@/components/admin/RightSideBar";
 import DirectorBoard from "@/components/director/DirectorBoard";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { getPlayStatus } from "@/api/director/client";
+import { getPlayStatus } from "@/api/v1/director/client";
 import { PlayerListType } from "@/types/lanes";
 
 type DirectorPlay = {

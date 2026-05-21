@@ -3,7 +3,7 @@
 import { useEffect, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import type { LaneDetailType } from '@/types/lanes';
-import { getLaneDetail } from "@/api/judge/client";
+import { getLaneDetail } from "@/api/v1/judge/client";
 
 function equalLane(a: LaneDetailType, b: LaneDetailType) {
   return (

@@ -1,4 +1,4 @@
-import { apiClient } from '@/api/apiClients';
+import { apiClient } from '@/api/v1/apiClients';
 import { CertificateResponse } from "@/types/cert";
 import { PlayerListType } from "@/types/lanes";
 import { TeamScoresResponse } from "@/types/admin";

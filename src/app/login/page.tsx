@@ -4,7 +4,7 @@ import { useRef, useState } from "react";
 import { Input } from "@/components/ui/input";
 import { LucideEye, LucideEyeClosed } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { login } from "@/api/auth";
+import { login } from "@/api/v1/auth";
 import { parseJwt } from "@/utils/parseJwt";
 import { useRouter } from "next/navigation";
 

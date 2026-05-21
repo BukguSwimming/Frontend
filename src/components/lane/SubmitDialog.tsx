@@ -1,4 +1,4 @@
-import { submitResult } from "@/api/judge/client";
+import { submitResult } from "@/api/v1/judge/client";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger, DialogClose } from "@/components/ui/dialog";
 

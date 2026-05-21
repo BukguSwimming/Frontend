@@ -1,4 +1,4 @@
-import { getLaneDetail } from "@/api/judge/server";
+import { getLaneDetail } from "@/api/v1/judge/server";
 import LaneClientComponent from "@/components/lane/LaneClientComponent";
 import RefreshOnChange from "@/components/lane/RefreshOnChange";
 import { SidePanel } from "@/components/sidepanel/sidepanel";

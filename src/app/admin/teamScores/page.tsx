@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useState } from "react";
-import { getTeamScore } from "@/api/admin/client";
+import { getTeamScore } from "@/api/v1/admin/client";
 import { TeamScoreItem } from "@/types/admin";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import RightSideBar from "@/components/admin/RightSideBar";

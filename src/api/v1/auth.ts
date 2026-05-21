@@ -1,4 +1,4 @@
-import { apiClient } from "@/api/apiClients";
+import { apiClient } from "@/api/v1/apiClients";
 import Cookies from "js-cookie";
 
 export const login = async (id: string, password: string) => {

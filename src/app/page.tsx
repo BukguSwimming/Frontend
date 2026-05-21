@@ -1,4 +1,4 @@
-import { logout } from "@/api/auth";
+import { logout } from "@/api/v1/auth";
 import { parseJwt } from "@/utils/parseJwt";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";

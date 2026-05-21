@@ -5,7 +5,7 @@ import { PlayerListType } from "@/types/lanes";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
 import { parseJwt } from "@/utils/parseJwt";
-import { reloadPlayStatus, updatePlayRecord } from "@/api/admin/client";
+import { reloadPlayStatus, updatePlayRecord } from "@/api/v1/admin/client";
 
 export type DirectorPlay = { play_num: number; player_list: PlayerListType[] };
 

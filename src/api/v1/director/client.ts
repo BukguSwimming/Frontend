@@ -1,5 +1,5 @@
-// src/api/director/client.ts
-import { apiClient } from "@/api/apiClients";
+// src/api/v1/director/client.ts
+import { apiClient } from "@/api/v1/apiClients";
 import { PlayerListType } from "@/types/lanes";
 
 export const getPlayStatus = async () => {

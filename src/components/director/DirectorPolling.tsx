@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useState } from "react";
-import { getPlayStatus } from "@/api/director/client";
+import { getPlayStatus } from "@/api/v1/director/client";
 import DirectorBoard, { DirectorPlay } from "./DirectorBoard";
 
 type Props = { searchTerm?: string };

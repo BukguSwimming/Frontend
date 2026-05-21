@@ -1,4 +1,4 @@
-import { apiClient } from "@/api/apiClients";
+import { apiClient } from "@/api/v1/apiClients";
 import { LaneDetailType } from "@/types/lanes";
 
 export const getLanes = async (lane_num: number) => {

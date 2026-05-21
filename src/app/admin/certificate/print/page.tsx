@@ -1,6 +1,6 @@
 'use client';
 
-import { printCertificate } from "@/api/admin/client";
+import { printCertificate } from "@/api/v1/admin/client";
 import dojang from "@/assets/도장.png";
 import logo from "@/assets/logo.png";
 import { CertificateResponse } from "@/types/cert";

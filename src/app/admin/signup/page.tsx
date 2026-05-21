@@ -1,6 +1,6 @@
 'use client'
 
-import { signup } from "@/api/auth";
+import { signup } from "@/api/v1/auth";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { LucideEye, LucideEyeClosed } from "lucide-react";
