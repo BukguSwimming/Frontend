@@ -31,7 +31,6 @@ export default function DirectorContent({ searchTerm = "" }: Props) {
     fetchData();
     const interval = setInterval(fetchData, 5000);
     return () => clearInterval(interval);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // 권한 파악: 1~6 레인, 7 감독이 아니면 어드민으로 간주

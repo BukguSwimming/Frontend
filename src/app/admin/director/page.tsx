@@ -29,7 +29,11 @@ export default function AdminDirectorPage() {
 
   useEffect(() => {
     // 최초 1회 로드만 수행 (폴링 없음)
-    load();
+    const timer = window.setTimeout(() => {
+      void load();
+    }, 0);
+
+    return () => window.clearTimeout(timer);
   }, []);
   return (
     <div className="p-4 w-full">

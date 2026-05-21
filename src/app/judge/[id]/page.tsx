@@ -39,7 +39,7 @@ export default async function LanePage({ params }: { params: Promise<{ id: strin
                     </tr>
                 </tbody>
             </table>
-            <LaneClientComponent next={response.next} previous={response.prev} record={parseInt(response.record)} dq={response.dq} id={id} />
+            <LaneClientComponent key={`${id}-${response.record}-${response.dq}`} next={response.next} previous={response.prev} record={parseInt(response.record)} dq={response.dq} id={id} />
         </div>
     ) : (
         <div>
