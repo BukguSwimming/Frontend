@@ -2,7 +2,7 @@
 import FoulPanel from "@/components/lane/FoulPanel";
 import { SubmitDialog } from "@/components/lane/SubmitDialog";
 import Timer from "@/components/lane/Timer";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 import { memo } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
@@ -17,13 +17,8 @@ interface ResponseProps {
 }
 
 function LaneClientComponent({ next, previous, record, dq, id }: ResponseProps) {
-  const [time, setTime] = useState(0);
-  const [foul, setFoul] = useState<string>("");
-
-  useEffect(() => {
-    setFoul(dq);
-    setTime(record);
-  }, [dq, record])
+  const [time, setTime] = useState(record);
+  const [foul, setFoul] = useState<string>(dq);
 
   return (
     <>

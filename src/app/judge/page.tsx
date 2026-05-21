@@ -36,7 +36,11 @@ function LaneListPage() {
   const currentLanes = filteredLanes.slice((page - 1) * ITEMS_PER_PAGE, page * ITEMS_PER_PAGE);
 
   useEffect(() => {
-    setLane_num(parseJwt());
+    const timer = window.setTimeout(() => {
+      setLane_num(parseJwt() ?? 0);
+    }, 0);
+
+    return () => window.clearTimeout(timer);
   }, []);
 
   useEffect(() => {
@@ -60,12 +64,6 @@ function LaneListPage() {
       })();
     }
   }, [lane_num]);
-
-  // 검색어 변경 시 첫 페이지로 이동
-  useEffect(() => {
-    setPage(1);
-  }, [searchTerm]);
-
 
   const renderPagination = () => {
     const pageNumbers = [];
@@ -119,7 +117,10 @@ function LaneListPage() {
         <div className="text-2xl font-bold flex justify-center whitespace-nowrap">
           {lane_num}번 레인 선수 목록
         </div>
-  <div className="flex justify-end"><SidePanel onSearch={(text) => setSearchTerm(text)} /></div>
+  <div className="flex justify-end"><SidePanel onSearch={(text) => {
+          setSearchTerm(text);
+          setPage(1);
+        }} /></div>
       </div>
 
       {renderPagination()}

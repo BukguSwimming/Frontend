@@ -16,7 +16,6 @@ export default function CertiSelectPage({ searchTerm = "" }: Props) {
     player_list: PlayerListType[];
   }[]>([]);
 
-  const [selectedPlay, setSelectedPlay] = useState<PlayerListType[]>();
   const [editingRow, setEditingRow] = useState<number | null>(null);
   const [editDQ, setEditDQ] = useState("");
 
@@ -65,10 +64,6 @@ export default function CertiSelectPage({ searchTerm = "" }: Props) {
     el.addEventListener("wheel", onWheel, { passive: false });
     return () => el.removeEventListener("wheel", onWheel);
   }, []);
-
-  useEffect(() => {
-    setSelectedPlay(data.find((play) => play.swimming_id === selectedCol)?.player_list)
-  }, [selectedCol, data])
 
   const formatRecord = (ms: number) => {
     const totalSeconds = Math.floor(ms / 1000);
@@ -127,7 +122,6 @@ export default function CertiSelectPage({ searchTerm = "" }: Props) {
         setData(prevData => prevData.map(d =>
           d.swimming_id === swimming_id ? { ...d, player_list: updated.player_list } : d
         ));
-        setSelectedPlay(updated.player_list);
       }
     }
     else {
@@ -158,15 +152,14 @@ export default function CertiSelectPage({ searchTerm = "" }: Props) {
   }, [data, isNumericOnly, normalized]);
 
   // 검색 결과가 바뀌면 첫 항목을 자동 선택
-  useEffect(() => {
-    if (!filtered || filtered.length === 0) {
-      setSelectedCol(-1);
-      return;
-    }
-    if (!filtered.some((d) => d.swimming_id === selectedCol)) {
-      setSelectedCol(filtered[0].swimming_id);
-    }
+  const activeSelectedCol = useMemo(() => {
+    if (filtered.length === 0) return -1;
+    return filtered.some((d) => d.swimming_id === selectedCol)
+      ? selectedCol
+      : filtered[0].swimming_id;
   }, [filtered, selectedCol]);
+
+  const selectedPlay = filtered.find((play) => play.swimming_id === activeSelectedCol)?.player_list;
 
   return (
     <div>
@@ -178,7 +171,7 @@ export default function CertiSelectPage({ searchTerm = "" }: Props) {
           {filtered.map((col) => {
             const status = getStatusForPlay(col);
             return (
-              <div key={`header-${col.swimming_id}`} className={`border text-sm text-center ${selectedCol === col.swimming_id ? 'border-t-2 border-r-2 border-l-2 border-double border-red-500' : ''} cursor-pointer`}
+              <div key={`header-${col.swimming_id}`} className={`border text-sm text-center ${activeSelectedCol === col.swimming_id ? 'border-t-2 border-r-2 border-l-2 border-double border-red-500' : ''} cursor-pointer`}
                 onClick={() => setSelectedCol(col.swimming_id)}
               >
                 <div>{col.swimming_id}</div>
@@ -268,7 +261,7 @@ export default function CertiSelectPage({ searchTerm = "" }: Props) {
                         {!isEditing && isAllDone && player?.rank && player?.rank <= 3 &&
                           <Button
                             onClick={() => {
-                              const params = new URLSearchParams({ id: String(player?.id ?? ""), swimming_id: String(selectedCol ?? "") });
+                              const params = new URLSearchParams({ id: String(player?.id ?? ""), swimming_id: String(activeSelectedCol ?? "") });
                               window.open(`/bukguswim/admin/certificate/print?${params.toString()}`, '_blank');
                             }}>
                             인쇄
@@ -277,7 +270,7 @@ export default function CertiSelectPage({ searchTerm = "" }: Props) {
                       <TableCell>
                         {isEditing ? (
                           <>
-                            <Button size="sm" className="mr-1" onClick={() => handleEditSave(selectedCol, player.id)}>완료</Button>
+                            <Button size="sm" className="mr-1" onClick={() => handleEditSave(activeSelectedCol, player.id)}>완료</Button>
                             <Button size="sm" variant="secondary" onClick={handleEditCancel}>취소</Button>
                           </>
                         ) : (

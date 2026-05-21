@@ -9,13 +9,6 @@ type Props = { searchTerm?: string };
 export default function DirectorPolling({ searchTerm = "" }: Props) {
   const [data, setData] = useState<DirectorPlay[]>([]);
 
-  useEffect(() => {
-    fetchData();
-    const interval = setInterval(fetchData, 5000);
-    return () => clearInterval(interval);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
   const fetchData = async () => {
     try {
       const response = await getPlayStatus();
@@ -28,6 +21,17 @@ export default function DirectorPolling({ searchTerm = "" }: Props) {
       console.error("API 요청 실패:", error);
     }
   };
+
+  useEffect(() => {
+    const timer = window.setTimeout(() => {
+      void fetchData();
+    }, 0);
+    const interval = setInterval(fetchData, 5000);
+    return () => {
+      window.clearTimeout(timer);
+      clearInterval(interval);
+    };
+  }, []);
 
   return <DirectorBoard data={data} searchTerm={searchTerm} />;
 }

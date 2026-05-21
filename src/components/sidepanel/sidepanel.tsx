@@ -21,12 +21,17 @@ export const SidePanel = ({ onSearch }: SidePanelProps) => {
   const router = useRouter();
 
   useEffect(()=>{
+    const timer = window.setTimeout(() => {
+      const response = parseJwt();
+      if(response === null){
+        router.push("/login");
+        return;
+      }
 
-    const response = parseJwt();
-    if(response === null){
-      router.push("/login");
-    }
-    setRole(response);
+      setRole(response);
+    }, 0);
+
+    return () => window.clearTimeout(timer);
   }, [router]);
 
   const handleLogout = async () => {
